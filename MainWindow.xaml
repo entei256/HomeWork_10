@@ -60,10 +60,11 @@
                   Grid.Column="0" 
                   Grid.RowSpan="2" 
                   Background="DarkGray"
-                  VerticalAlignment="Stretch">
+                  VerticalAlignment="Stretch"
+                  ItemsSource="{Binding Path=TelegramBot.BotCient.ChatUsers,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <TextBlock Text="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

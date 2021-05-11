@@ -13,5 +13,14 @@ namespace HomeWork_10
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            var startUpBot = TelegramBot.TelegramBots.getBot();         //Получаем ссылку на бота
+            startUpBot.OnMessage += TelegramBot.BotCient.BotHomeListner; //Подписываемся на послушиватель при старте.
+            startUpBot.StartReceiving(); //Запускаем бота
+
+        }
     }
 }
