@@ -5,8 +5,93 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeWork_10"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="TelegramBotClient" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter 
+            Grid.Column="1"
+            Grid.Row="1"
+            Grid.RowSpan="2" 
+            Background="Black"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            />
+        
+        <!--UserMessageForm-->
+        <ListView x:Name="UserMessageForm"
+                  Background="Gray"
+                  VerticalAlignment="Stretch"
+                  Grid.Column="2"
+                  Grid.Row="1">
 
+        </ListView>
+        
+        <!--TopMenu-->
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Row="0" Grid.Column="0" 
+                    Grid.RowSpan="1" 
+                    Grid.ColumnSpan="3" 
+                    Background="WhiteSmoke">
+            
+            <Menu>
+                <MenuItem Header="Сообщения">
+                    <MenuItem x:Name="TopMenuSaveMessage"
+                        Header="Сохранить"/>
+                </MenuItem>
+                <MenuItem Header="Настройки">
+                    <MenuItem x:Name="TopMenuTheme"
+                        Header="Тема"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <!--UserView-->
+        <ListView x:Name="UserView"
+                  Grid.Row="1" 
+                  Grid.Column="0" 
+                  Grid.RowSpan="2" 
+                  Background="DarkGray"
+                  VerticalAlignment="Stretch">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--Text and Button Answer-->
+        <Grid Grid.Row="2" 
+                    Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="AnswerTextForm"
+                   Text="111" 
+                   Grid.Column="0"
+                   Background="White" 
+                   HorizontalAlignment="Stretch" 
+                   TextAlignment="Left" 
+                   Width="Auto"
+                   Margin="2" 
+                   Padding="5"/>
+
+            <Button x:Name ="AnswerButton"
+                    Content="Send" 
+                    Grid.Column="1"
+                    HorizontalAlignment="Right" 
+                    Padding="5"
+                    Margin="2"/>
+        </Grid>
     </Grid>
 </Window>
