@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HomeWork_10.TelegramBot
 {
-    class UserMessege
+    public class UserMessege
     {
         public long ChatID { get; set; }
         public DateTime Date { get; set; }

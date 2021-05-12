@@ -13,7 +13,7 @@ namespace HomeWork_10.TelegramBot
     {
         private static TelegramBotClient tlgBot;
 
-        public static TelegramBotClient getBot()
+        public static TelegramBotClient GetBot()
         {
             if (tlgBot == null)           //Если нету экземпляра бота, то создаем.
             {

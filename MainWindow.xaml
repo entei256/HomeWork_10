@@ -14,18 +14,9 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="2"/>
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
-        <GridSplitter 
-            Grid.Column="1"
-            Grid.Row="1"
-            Grid.RowSpan="2" 
-            Background="Black"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            />
-        
+
         <!--UserMessageForm-->
         <ListView x:Name="UserMessageForm"
                   Background="Gray"
@@ -60,11 +51,10 @@
                   Grid.Column="0" 
                   Grid.RowSpan="2" 
                   Background="DarkGray"
-                  VerticalAlignment="Stretch"
-                  ItemsSource="{Binding Path=TelegramBot.BotCient.ChatUsers,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}">
+                  VerticalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
+                    <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

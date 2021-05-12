@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HomeWork_10.TelegramBot
 {
-    class ChatUser
+    public class ChatUser
     {
         private ObservableCollection<UserMessege> messeges;
         public long UserID { get; set; }
