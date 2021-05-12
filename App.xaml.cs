@@ -17,10 +17,6 @@ namespace HomeWork_10
         {
             base.OnStartup(e);
 
-            var startUpBot = TelegramBot.TelegramBots.GetBot();         //Получаем ссылку на бота
-            startUpBot.OnMessage += TelegramBot.BotCient.BotHomeListner; //Подписываемся на послушиватель при старте.
-            startUpBot.StartReceiving(); //Запускаем бота
-
         }
     }
 }

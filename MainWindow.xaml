@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeWork_10"
+        xmlns:bot="clr-namespace:HomeWork_10.TelegramBot"
         mc:Ignorable="d"
         Title="TelegramBotClient" Height="450" Width="800">
+    <Window.DataContext>
+        <local:BotVM/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +27,13 @@
                   Background="Gray"
                   VerticalAlignment="Stretch"
                   Grid.Column="2"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  ItemsSource="{Binding ElementName=UserView,Path=SelectedItem.Messeges}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
         </ListView>
         
@@ -46,18 +57,19 @@
         </StackPanel>
 
         <!--UserView-->
-        <ListView x:Name="UserView"
+        <ListBox x:Name="UserView"
                   Grid.Row="1" 
                   Grid.Column="0" 
                   Grid.RowSpan="2" 
                   Background="DarkGray"
-                  VerticalAlignment="Stretch">
-            <ListView.ItemTemplate>
+                  VerticalAlignment="Stretch"
+                  ItemsSource="{Binding ChatUsers}">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <!--Text and Button Answer-->
         <Grid Grid.Row="2" 
@@ -67,7 +79,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="AnswerTextForm"
+            <TextBox x:Name="AnswerTextForm"
                    Text="111" 
                    Grid.Column="0"
                    Background="White" 
