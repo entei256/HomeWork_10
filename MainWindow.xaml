@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeWork_10"
+        xmlns:Bot="clr-namespace:HomeWork_10.TelegramBot"
         mc:Ignorable="d"
         Title="TelegramBotClient" Height="450" Width="800">
+    <Window.DataContext>
+        <Bot:BotCient/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,7 +35,19 @@
                   Background="Gray"
                   VerticalAlignment="Stretch"
                   Grid.Column="2"
-                  Grid.Row="1">
+                  Grid.Row="1"
+                  ItemsSource="{Binding ElementName=UserView,Path=SelectedItem.Messeges}"
+                  SelectedItem="{Binding SelectedMessage}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="2" HorizontalAlignment="Stretch">
+                        <TextBlock Text="{Binding Date,StringFormat={}{0:dd/MM/yyyy HH:mm}}" Margin="5"/>
+                        
+                        <TextBlock Text="{Binding Text}" Margin="5"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
         </ListView>
         
@@ -61,10 +77,34 @@
                   Grid.RowSpan="2" 
                   Background="DarkGray"
                   VerticalAlignment="Stretch"
-                  ItemsSource="{Binding Path=TelegramBot.BotCient.ChatUsers,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}">
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding ChatUsers}"
+                  SelectedItem="{Binding SelectedUser}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name,StringFormat={}{0:dd/MM/yyyy}}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="0"
+                                   HorizontalAlignment="Left"/>
+                        <TextBlock Text="{Binding LastMessageDate,StringFormat={}{0:dd/MM/yyyy}}" 
+                                   Grid.Row="0" 
+                                   Grid.Column="1" 
+                                   HorizontalAlignment="Right"/>
+                        <TextBlock Text="{Binding UserName}" 
+                                   Grid.Row="1" 
+                                   Grid.Column="0" 
+                                   HorizontalAlignment="Left" 
+                                   FontSize="10"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -77,7 +117,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="AnswerTextForm"
+            <TextBox x:Name="AnswerTextForm"
                    Text="111" 
                    Grid.Column="0"
                    Background="White" 
@@ -85,14 +125,15 @@
                    TextAlignment="Left" 
                    Width="Auto"
                    Margin="2" 
-                   Padding="5"/>
+                   Padding="5" TextWrapping="Wrap"/>
 
             <Button x:Name ="AnswerButton"
                     Content="Send" 
                     Grid.Column="1"
                     HorizontalAlignment="Right" 
                     Padding="5"
-                    Margin="2"/>
+                    Margin="2"
+                    Command="{Binding SendCommand}" CommandParameter="{Binding ElementName=AnswerTextForm,Path=Text}"/>
         </Grid>
     </Grid>
 </Window>

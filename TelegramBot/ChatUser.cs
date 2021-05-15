@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace HomeWork_10.TelegramBot
 {
-    class ChatUser
+    public class ChatUser : INotifyPropertyChanged
     {
         private ObservableCollection<UserMessege> messeges;
         public long UserID { get; set; }
@@ -31,8 +33,29 @@ namespace HomeWork_10.TelegramBot
                 }
             }
         }
+        public DateTime LastMessageDate { 
+            get {
+                if (Messeges.Count <= 0)
+                    return DateTime.MinValue;
 
+                return Messeges[Messeges.Count - 1].Date;
+            } 
+        }
 
-        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public void NewMessage()
+        {
+            NotifyPropertyChanged("LastMessageDate");  //Уведомляем что в ChatUser обновилось свойство LastMessageDate, т.к. получили новое сообщение
+
+        }
     }
 }
