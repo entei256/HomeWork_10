@@ -42,6 +42,7 @@ namespace HomeWork_10.TelegramBot
             } 
         }
 
+        #region Реалзация INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -51,6 +52,7 @@ namespace HomeWork_10.TelegramBot
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
 
         public void NewMessage()
         {

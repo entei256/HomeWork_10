@@ -17,7 +17,7 @@ namespace HomeWork_10.TelegramBot
         {
             if (tlgBot == null)           //Если нету экземпляра бота, то создаем.
             {
-                tlgBot = new TelegramBotClient(File.ReadAllText("D:\\Учеба\\BotTlgToken.txt"));
+                tlgBot = new TelegramBotClient(File.ReadAllText("..\\BotTlgToken.txt"));
             }
             return tlgBot;          //Возвращаем записанный в приватное поле экземпляр бота.
         }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Threading;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace HomeWork_10.TelegramBot
 {
@@ -74,6 +77,14 @@ namespace HomeWork_10.TelegramBot
         public BotClientCommand SendCommand {
             get {
                 return sendCommand ?? (sendCommand = new BotClientCommand(obj => SendMessage(obj)));      //Немного изменил вариант с Митанита. Больше всего понравился.
+            }
+        }
+        private BotClientCommand saveChatStory;
+        public BotClientCommand SaveChatStory
+        {
+            get
+            {
+                return saveChatStory ?? (saveChatStory = new BotClientCommand(() => SaveChatUsers()));   
             }
         }
         #endregion
@@ -164,7 +175,7 @@ namespace HomeWork_10.TelegramBot
                 }
             }
 
-
+            TextToSend = "";
         }
 
 
@@ -177,6 +188,17 @@ namespace HomeWork_10.TelegramBot
             {
                 if (message == null || message.Equals(curmessage))
                     curmessage.IsNew = false;
+            }
+        }
+
+        //Сохранение в файл всех сообщений
+        private static void SaveChatUsers()        //Костыль, не разобрал как сделать комманды с параметрами и без
+        {
+            var saveFileDialog = new SaveFileDialog();
+            if(saveFileDialog.ShowDialog().GetValueOrDefault(false))
+            {
+                var JsonString = JsonConvert.SerializeObject(ChatUsers);
+                File.WriteAllText(saveFileDialog.FileName, JsonString);
             }
         }
     }

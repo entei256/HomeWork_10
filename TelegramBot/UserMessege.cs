@@ -12,7 +12,6 @@ namespace HomeWork_10.TelegramBot
         public DateTime Date { get; set; }
         public string Text { get; set; }
         public int MessageId { get; set; }
-        public bool IsNew { get; set; } = true;
-        //public ChatUser CurUser { get; set; }
+        public bool IsNew { get; set; } = true; //Флаг что сообщение новое.
     }
 }
