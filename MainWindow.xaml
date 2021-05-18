@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HomeWork_10"
         xmlns:Bot="clr-namespace:HomeWork_10.TelegramBot"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="TelegramBotClient" Height="450" Width="800">
     <Window.DataContext>
@@ -118,7 +119,8 @@
                     HorizontalAlignment="Right" 
                     Padding="5"
                     Margin="2"
-                    Command="{Binding SendCommand}" CommandParameter="{Binding ElementName=AnswerTextForm,Path=Text}"/>
+                    Command="{Binding SendCommand}" CommandParameter="{Binding ElementName=AnswerTextForm}">
+            </Button>
         </Grid>
     </Grid>
 </Window>

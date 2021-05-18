@@ -41,6 +41,8 @@ namespace HomeWork_10.TelegramBot
                 return Messeges[Messeges.Count - 1].Date;
             } 
         }
+        public bool IsNewMessage { get; set; }
+
 
         #region Реалзация INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -57,7 +59,7 @@ namespace HomeWork_10.TelegramBot
         public void NewMessage()
         {
             NotifyPropertyChanged("LastMessageDate");  //Уведомляем что в ChatUser обновилось свойство LastMessageDate, т.к. получили новое сообщение
-
+            IsNewMessage = true;
         }
     }
 }

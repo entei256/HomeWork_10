@@ -158,7 +158,12 @@ namespace HomeWork_10.TelegramBot
         public static void SendMessage(object TextToSend)
         {
             var bot = TelegramBots.getBot();  //Получаем ссылку на бота.
-            var text = TextToSend as string; //Приводим полученный обьект к тексту
+            string ansverText = String.Empty;
+            if (TextToSend is System.Windows.Controls.TextBox)
+                ansverText = (TextToSend as System.Windows.Controls.TextBox).Text;
+            else
+                return;
+             //= TextToSend as string; //Приводим полученный обьект к тексту
 
             foreach(var user in ChatUsers)
             {
@@ -168,14 +173,14 @@ namespace HomeWork_10.TelegramBot
                     {
                         ChatID = user.UserID,
                         Date = DateTime.Now,
-                        Text = text
+                        Text = String.Format("To: {0}",ansverText)
                     });
 
-                    bot.SendTextMessageAsync(user.UserID,text);
+                    bot.SendTextMessageAsync(user.UserID, ansverText);
                 }
             }
 
-            TextToSend = "";
+            (TextToSend as System.Windows.Controls.TextBox).Text = "";
         }
 
 
