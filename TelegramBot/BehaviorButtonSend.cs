@@ -15,6 +15,11 @@ namespace HomeWork_10.TelegramBot
         protected override void OnAttached()
         {
             base.OnAttached();
+            AssociatedObject.Click += Click;
+        }
+
+        void Click(Object s, RoutedEventArgs e)
+        {
         }
     }
 }
