@@ -159,24 +159,26 @@ namespace HomeWork_10.TelegramBot
         {
             var bot = TelegramBots.getBot();  //Получаем ссылку на бота.
             string ansverText = String.Empty;
-            if (TextToSend is System.Windows.Controls.TextBox)
-                ansverText = (TextToSend as System.Windows.Controls.TextBox).Text;
+            if (TextToSend is System.Windows.Controls.TextBox)           //Проверяем что обьект типа TextBox
+                ansverText = (TextToSend as System.Windows.Controls.TextBox).Text;      //Приводим к типу TextBox
             else
                 return;
-             //= TextToSend as string; //Приводим полученный обьект к тексту
+
+            if (SelectedUser == null)      //Если не выбран пользователь то выходим.
+                return;
 
             foreach(var user in ChatUsers)
             {
-                if (user.UserID == SelectedUser.UserID)
+                if (user.UserID == SelectedUser.UserID)          //Ищем нужного пользователя.
                 {
-                    user.Messeges.Add(new UserMessege
+                    user.Messeges.Add(new UserMessege            //Добовляем ему сообщение в список сообщений.
                     {
                         ChatID = user.UserID,
                         Date = DateTime.Now,
                         Text = String.Format("To: {0}",ansverText)
                     });
 
-                    bot.SendTextMessageAsync(user.UserID, ansverText);
+                    bot.SendTextMessageAsync(user.UserID, ansverText);         //Отправляем сообщение пользователю.
                 }
             }
 
