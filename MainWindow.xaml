@@ -120,9 +120,11 @@
                     Padding="5"
                     Margin="2">
                 <!--"{Binding SendCommand}" CommandParameter="{Binding ElementName=AnswerTextForm}">-->
-                <i:Interaction.Behaviors>
-                    <Bot:BehaviorButtonSend/>
-                </i:Interaction.Behaviors>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:InvokeCommandAction Command="{Binding SendCommand}" CommandParameter="{Binding ElementName=AnswerTextForm}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </Button>
         </Grid>
     </Grid>
